@@ -44,7 +44,39 @@ a {
     color-scheme: dark;
   }
 }
-.gradient-bg { @apply bg-gradient-to-b from-[#0a0a0f] via-[#0d0f1a] to-[#0b0d15]; }
-.glass { @apply backdrop-blur-xl bg-white/5 ring-1 ring-white/10 rounded-3xl shadow-[0_0_1px_rgba(255,255,255,0.25)]; }
-.chip { @apply px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white/90 border border-white/15; }
-.container { @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8; }
+.gradient-bg {
+  @apply bg-gradient-to-b from-[#0b0d15] via-[#0d0f1a] to-[#0a0a0f];
+}
+
+.glass {
+  @apply backdrop-blur-xl bg-white/5 ring-1 ring-white/10 rounded-3xl shadow-[0_0_1px_rgba(255,255,255,0.25)];
+}
+
+.chip {
+  @apply px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white/90 border border-white/15;
+}
+
+.container {
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.hero-panel {
+  @apply relative overflow-hidden rounded-3xl ring-1 ring-white/10;
+  background:
+          radial-gradient(1200px 800px at 15% 15%, rgba(5, 236, 244,0.25) 0%, transparent 45%),
+          radial-gradient(1200px 800px at 95% 15%, rgba(251,33,169,0.25) 0%, transparent 45%),
+          linear-gradient(180deg, rgba(13,5,26,.02), rgba(255,255,255,0));
+  box-shadow:
+          0 10px 40px rgba(0,0,0,.45),
+          inset 0 1px 0 rgba(255,255,255,.06);
+  background-color: #0e1117;
+}
+
+/* دکمه‌ها */
+.btn-primary {
+  @apply inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-white text-black font-medium hover:bg-white/90 transition;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center px-5 py-3 rounded-2xl bg-white/5 text-white font-medium hover:bg-white/10 ring-1 ring-white/10 transition;
+}
