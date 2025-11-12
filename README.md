@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Personal Portfolio -- Next.js 14 + Tailwind CSS
 
-## Getting Started
+A modern, responsive and developer-focused portfolio built with
+**Next.js 14**, **TypeScript**, and **Tailwind CSS** to showcase
+projects, skills, and experience in a clean and performant UI.
 
-First, run the development server:
+------------------------------------------------------------------------
 
-```bash
+## ✨ Features
+
+-   ⚡ **Next.js 14** App Router
+-   🎨 **Tailwind CSS** for rapid & clean UI
+-   📱 Fully **Responsive Design**
+-   🧩 Reusable Components
+-   🛠 TypeScript for type-safety
+-   🚀 Fast & SEO optimized
+-   📂 Project showcase section
+-   💼 About / Skills / Contact sections
+-   🌗 Easily extendable for dark mode
+
+------------------------------------------------------------------------
+
+## 🛠 Installation & Setup
+
+1.  **Clone the repository**
+
+``` bash
+git clone https://github.com/Cybernith/cybernith-site.git
+cd Cybernith/cybernith-site
+```
+
+2.  **Install dependencies**
+
+``` bash
+npm install
+# or
+yarn install
+```
+
+3.  **Run the development server**
+
+``` bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4.  **Open in browser**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    http://localhost:3000
 
-## Learn More
+------------------------------------------------------------------------
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Build for Production
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+``` bash
+npm run build
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+------------------------------------------------------------------------
 
-## Deploy on Vercel
+## 🔧 Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Technology     Usage
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+-------------- ----------------
+
+Next.js 14     Framework
+React          UI Library
+TypeScript     Type Safety
+Tailwind CSS   Styling
+PostCSS        CSS Processing
+
+------------------------------------------------------------------------
+
+## 🌍 Deployment
+
+Easiest way to deploy is using **Vercel**:
+
+1.  Push project to GitHub
+2.  Go to: https://vercel.com
+3.  Import repo and deploy 🚀
+
+------------------------------------------------------------------------
+
+## 📬 Contact
+
+If you want to connect or collaborate:
+
+-   **GitHub:** https://github.com/Cybernith
+
+------------------------------------------------------------------------
+
+## ⭐ Support
+
+If you like this project, don't forget to give it a star ⭐\
+Made with ❤️ by **Soroosh Morshedi**
