@@ -1,7 +1,7 @@
 import './globals.css'
 import type { ReactNode } from 'react'
 
-const siteUrl = 'https://sorooshmorshedi.com'
+const siteUrl = 'https://sorooshmorshedi.ir'
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
@@ -101,9 +101,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         description:
             'معمار و توسعه‌دهنده Full-Stack با تجربه در ساخت سیستم‌های مقیاس‌پذیر، مالی و فروشگاهی، میکروسرویس، DevOps و مهندسی داده.',
         sameAs: [
-          'https://github.com/Cybernith',
-          'https://linkedin.com/in/Cybernith',
-          'https://instagram.com/soroosh.morshedi',
+          "https://wa.me/989171035930",
+          "https://t.me/sorooshMorshedi",
+          "https://instagram.com/soroosh.morshedi",
+          "https://github.com/Cybernith",
+          "mailto:devolopersoroosh@gmail.com"
         ],
         knowsAbout: [
           'Django', 'Django REST Framework (DRF)', 'Next.js', 'React', 'Vue.js', 'Nuxt.js', 'Go', 'Python', 'FastAPI', 'Flask',

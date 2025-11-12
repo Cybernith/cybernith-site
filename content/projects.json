@@ -1,0 +1,24 @@
+[
+  {
+    "title": "EXUNI - Affiliate Marketing & Super E-Commerce Platform",
+    "company": "https://exuni.ir",
+    "challenge": "Building a next-generation affiliate-driven super-app handling high traffic, advanced search, and complex financial workflows.",
+    "solution": "Designed a modular, scalable architecture with Django REST Framework, PostgreSQL, Redis caching, and Dockerized CI/CD pipelines using GitHub Actions. Integrated intelligent affiliate tracking and marketplace modules for multi-vendor operations.",
+    "impact": "Improved performance by 45%, reduced infrastructure costs by 30%, and increased user conversion rates by 12% while maintaining enterprise-grade reliability."
+  },
+  {
+    "title": "Sobhan.Cloud - Financial Accounting SaaS",
+    "company": "https://sobhan.cloud",
+    "challenge": "Designing a multi-tenant financial accounting software with real-time ledger sync, billing automation, and secure API integrations.",
+    "solution": "Built hybrid backend with Django and Go microservices, Redis/NATS messaging, and PostgreSQL. Deployed on Dockerized infrastructure with automated CI/CD and cloud monitoring.",
+    "impact": "Enabled thousands of active tenants, achieved <200 ms API latency, improved billing efficiency by 35%, and ensured zero reconciliation drift."
+  },
+  {
+    "title": "FastAPI IoT Backend - Internet of Things Platform",
+    "company": "Artech",
+    "url": "https://github.com/Cybernith/FastAPI-internet-of-things",
+    "challenge": "Creating a scalable backend to manage IoT units, sensors, and readings with strong modularity and lightweight performance.",
+    "solution": "Developed RESTful FastAPI backend using PostgreSQL with repository pattern (no ORM), integrated Swagger/Redoc docs, unit testing, and Dockerized deployment.",
+    "impact": "Delivered reliable sensor management APIs with <100 ms response time, enabling real-time monitoring and simple cloud deployment for IoT ecosystems."
+  }
+]

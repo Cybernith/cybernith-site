@@ -1,5 +1,5 @@
 export default function robots() {
-  const siteUrl = 'https://sorooshmorshedi.com';
+  const siteUrl = 'https://sorooshmorshedi.ir';
 
   return {
     rules: [

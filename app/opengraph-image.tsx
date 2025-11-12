@@ -52,7 +52,7 @@ export default function OG() {
                         </div>
 
                         <div style={{ marginTop: 8, fontSize: 24, opacity: 0.75 }}>
-                            sorooshmorshedi.com
+                            sorooshmorshedi.ir
                         </div>
                     </div>
                 </div>

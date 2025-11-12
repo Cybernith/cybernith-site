@@ -1,13 +1,12 @@
-// app/llms.txt/route.ts
 export const runtime = 'edge';
 export const revalidate = 86400;
 
 export async function GET() {
-  const body = `# llms.txt for sorooshmorshedi.com
+  const body = `# llms.txt for https://sorooshmorshedi.ir
 Owner: Soroosh Morshedi (Cybernith)
 Contact: devolosersoroosh@gmail.com; https://linkedin.com/in/Cybernith; https://github.com/Cybernith
-Primary: https://sorooshmorshedi.com/
-Sitemap: https://sorooshmorshedi.com/sitemap.xml
+Primary: https://sorooshmorshedi.ir/
+Sitemap: https://sorooshmorshedi.ir/sitemap.xml
 
 Allow: /
 Disallow: /api/, /admin/, /private/, /drafts/, /_next/

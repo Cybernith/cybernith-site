@@ -1,12 +1,13 @@
-// app/page.tsx
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import Services from '@/components/Services';
-import Projects from '@/components/Projects';
 import About from '@/components/About';
+import Projects from '@/components/Projects';
+import Contact from '@/components/Contact';
+import Stack from '@/components/Stack';
 import Footer from '@/components/Footer';
 
-export const revalidate = 86400; // ISR روزانه
+export const revalidate = 86400;
 
 export default function Page() {
     const jsonLd = {
@@ -14,8 +15,14 @@ export default function Page() {
         '@type': 'Person',
         name: 'Cybernith',
         jobTitle: 'Full-Stack Developer',
-        url: 'http://localhost:3000',
-        sameAs: ['https://github.com/your-handle','https://www.linkedin.com/in/your-handle']
+        url: 'https://sorooshmorshedi.ir',
+        sameAs: [
+            "https://wa.me/989171035930",
+            "https://t.me/sorooshMorshedi",
+            "https://instagram.com/soroosh.morshedi",
+            "https://github.com/Cybernith",
+            "mailto:devolopersoroosh@gmail.com"
+        ]
     };
 
     return (
@@ -25,8 +32,10 @@ export default function Page() {
             <main>
                 <Hero />
                 <Services />
-                <Projects />
                 <About />
+                <Stack />
+                <Projects />
+                <Contact />
             </main>
             <Footer />
         </>
