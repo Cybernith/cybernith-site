@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -40,3 +44,7 @@ a {
     color-scheme: dark;
   }
 }
+.gradient-bg { @apply bg-gradient-to-b from-[#0a0a0f] via-[#0d0f1a] to-[#0b0d15]; }
+.glass { @apply backdrop-blur-xl bg-white/5 ring-1 ring-white/10 rounded-3xl shadow-[0_0_1px_rgba(255,255,255,0.25)]; }
+.chip { @apply px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white/90 border border-white/15; }
+.container { @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8; }
