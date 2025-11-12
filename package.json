@@ -5,8 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
+    "start": "next start -p ${PORT:-8080}",
+    "lint": "next lint",
+    "test": "echo \"(optional)\""
+  },
+  "engines": {
+    "node": ">=18.18 <23"
   },
   "dependencies": {
     "react": "19.2.0",

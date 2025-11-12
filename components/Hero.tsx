@@ -71,7 +71,7 @@ export default function Hero() {
 
                         <ul className="flex flex-wrap gap-1.5 sm:gap-2" aria-label="Key skills">
                             {[
-                                "E-commerce Architecture",
+                                "Software & Website Architecture",
                                 "Django/DRF",
                                 "Go",
                                 "FastAPI",
