@@ -25,11 +25,20 @@ jobs:
           mkdir -p ~/.ssh
           echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
 
+      - name: Prepare files for Dokku
+        run: |
+          mkdir -p deploy
+          cp -r .next public package*.json deploy/
+
       - name: Push built files to Dokku
         run: |
           cd deploy
           git init
+          git config user.email "devolopersoroosh@gmail.com"
+          git config user.name "soroosh morshedi"
+
           git add .
           git commit -m "Deploy build to Dokku"
           git remote add dokku dokku@${{ secrets.SSH_IP_ADDRESS }}:${{ secrets.DOKKU_PROJECT }} || true
           git push dokku HEAD:main -f
+
