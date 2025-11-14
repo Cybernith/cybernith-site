@@ -1,4 +1,4 @@
-name: Deploy profilto to Dokku
+name: Deploy Next.js SSR to Dokku
 
 on:
   push:
@@ -6,24 +6,45 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js project
+        run: npm run build
+
+      - name: Prepare files for Dokku
+        run: |
+          mkdir -p deploy
+          cp -r .next public package*.json deploy/
+          cd deploy
+          git init
+          git add .
+          git commit -m "Deploy build to Dokku"
+
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Disable Host Key Checking
+      - name: Disable host key checking
         run: |
           mkdir -p ~/.ssh
-          echo "StrictHostKeyChecking no" > ~/.ssh/config
+          echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
 
-      - name: Push to Dokku (Buildpack)
+      - name: Push to Dokku
         run: |
+          cd deploy
           git remote add dokku dokku@${{ secrets.SSH_IP_ADDRESS }}:${{ secrets.DOKKU_PROJECT }} || true
-          git push dokku main:master -f
+          git push dokku HEAD:main -f

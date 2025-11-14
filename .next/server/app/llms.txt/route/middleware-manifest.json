@@ -1,0 +1,38 @@
+{
+  "sorted_middleware": [
+    "/llms.txt/route"
+  ],
+  "middleware": {},
+  "instrumentation": null,
+  "functions": {
+    "/llms.txt/route": {
+      "files": [
+        "server/middleware-build-manifest.js",
+        "server/interception-route-rewrite-manifest.js",
+        "server/server-reference-manifest.js",
+        "server/app/llms.txt/route_client-reference-manifest.js",
+        "server/edge/chunks/_next-internal_server_app_llms_txt_route_actions_160af907.js",
+        "server/edge/chunks/[root-of-the-server]__d121b60d._.js",
+        "server/edge/chunks/[root-of-the-server]__abff26f4._.js",
+        "server/edge/chunks/turbopack-edge-wrapper_96ed5d40.js"
+      ],
+      "name": "app/llms.txt/route",
+      "page": "/llms.txt/route",
+      "matchers": [
+        {
+          "regexp": "^/llms\\.txt(?:/)?$",
+          "originalSource": "/llms.txt"
+        }
+      ],
+      "wasm": [],
+      "assets": [],
+      "env": {
+        "__NEXT_BUILD_ID": "-0qROlJgZ5DG9yhmNTEF2",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "osAUUWEhYkLwuNDDvkF7s5zW614843qDHg9r+fTX1so=",
+        "__NEXT_PREVIEW_MODE_ID": "8d4163342dda909b73b7dcf6e57a525d",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "948df352b1b767bb000bfbaa9a7d83c8ff01233a80c0768c444139b75119de86",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "d2e770ded60cc9d150d84dd698c7d2c25f18b1f720e59ec9d30389e053ba0f78"
+      }
+    }
+  }
+}

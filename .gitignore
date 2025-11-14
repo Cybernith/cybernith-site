@@ -14,10 +14,6 @@ package-lock.json
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
-
 # production
 /build
 
