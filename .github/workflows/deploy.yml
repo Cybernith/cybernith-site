@@ -20,13 +20,12 @@ jobs:
         run: |
           docker build -t my-next-app .
 
-      - name: Log in to Dokku Docker registry
-        run: echo "${{ secrets.DOKKU_DOCKER_PASSWORD }}" | docker login ${{ secrets.DOKKU_DOCKER_REGISTRY }} -u ${{ secrets.DOKKU_DOCKER_USERNAME }} --password-stdin
-
-      - name: Tag and push Docker image to Dokku
-        run: |
-          docker tag my-next-app ${{ secrets.DOKKU_DOCKER_REGISTRY }}/${{ secrets.DOKKU_PROJECT }}:latest
-          docker push ${{ secrets.DOKKU_DOCKER_REGISTRY }}/${{ secrets.DOKKU_PROJECT }}:latest
-
-      - name: Deploy image on Dokku
-        run: ssh -o StrictHostKeyChecking=no dokku@${{ secrets.SSH_IP_ADDRESS }} "dokku tags:deploy ${{ secrets.DOKKU_PROJECT }} latest"
+      - name: Deploy image to Dokku
+        uses: appleboy/ssh-action@v0.1.9
+        with:
+          host: ${{ secrets.SSH_IP_ADDRESS }}
+          username: dokku
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            docker load -i <(docker save my-next-app)
+            dokku tags:deploy ${{ secrets.DOKKU_PROJECT }} latest
