@@ -1,7 +1,6 @@
 .idea
 package-lock.json
 
-node_modules/
 /node_modules
 /.pnp
 .pnp.*
@@ -11,8 +10,10 @@ node_modules/
 !.yarn/releases
 !.yarn/versions
 
-# testing
 /coverage
+
+/.next/
+/out/
 
 # production
 /build

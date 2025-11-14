@@ -1,4 +1,4 @@
-name: Deploy Next.js Build to Dokku
+name: Deploy Next.js Build to Dokku via Docker
 
 on:
   push:
@@ -6,39 +6,27 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
 
-      - name: Disable host key checking
+      - name: Build Docker image locally
         run: |
-          mkdir -p ~/.ssh
-          echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+          docker build -t my-next-app .
 
-      - name: Prepare files for Dokku
+      - name: Log in to Dokku Docker registry
+        run: echo "${{ secrets.DOKKU_DOCKER_PASSWORD }}" | docker login ${{ secrets.DOKKU_DOCKER_REGISTRY }} -u ${{ secrets.DOKKU_DOCKER_USERNAME }} --password-stdin
+
+      - name: Tag and push Docker image to Dokku
         run: |
-          mkdir -p deploy
-          cp -r .next public package*.json deploy/
+          docker tag my-next-app ${{ secrets.DOKKU_DOCKER_REGISTRY }}/${{ secrets.DOKKU_PROJECT }}:latest
+          docker push ${{ secrets.DOKKU_DOCKER_REGISTRY }}/${{ secrets.DOKKU_PROJECT }}:latest
 
-      - name: Push built files to Dokku
-        run: |
-          cd deploy
-          git init
-          git config user.email "devolopersoroosh@gmail.com"
-          git config user.name "soroosh morshedi"
-
-          git add .
-          git commit -m "Deploy build to Dokku"
-          git remote add dokku dokku@${{ secrets.SSH_IP_ADDRESS }}:${{ secrets.DOKKU_PROJECT }} || true
-          git push dokku HEAD:main -f
-
+      - name: Deploy image on Dokku
+        run: ssh -o StrictHostKeyChecking=no dokku@${{ secrets.SSH_IP_ADDRESS }} "dokku tags:deploy ${{ secrets.DOKKU_PROJECT }} latest"
