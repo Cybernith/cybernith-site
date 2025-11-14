@@ -1,4 +1,4 @@
-name: Deploy Next.js SSR to Dokku
+name: Deploy Next.js SSR to Dokku (Build Locally)
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,22 +14,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2️⃣ Setup Node.js
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 22
-
-      # 3️⃣ Install dependencies
-      - name: Install dependencies
-        run: npm ci
-
-      # 4️⃣ Build Next.js
-      - name: Build Next.js project
-        run: npm run build
-
-      # 5️⃣ Prepare files for Dokku
-      - name: Prepare files for Dokku
+      # 2️⃣ Prepare deploy folder
+      - name: Prepare deploy folder
         run: |
           mkdir -p deploy
           cp -r .next public package*.json deploy/
@@ -40,19 +26,19 @@ jobs:
           git add .
           git commit -m "Deploy build to Dokku"
 
-      # 6️⃣ Setup SSH for Dokku
+      # 3️⃣ Setup SSH
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # 7️⃣ Disable host key checking
+      # 4️⃣ Disable host key checking
       - name: Disable host key checking
         run: |
           mkdir -p ~/.ssh
           echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
 
-      # 8️⃣ Push to Dokku
+      # 5️⃣ Push to Dokku
       - name: Push to Dokku
         run: |
           cd deploy
