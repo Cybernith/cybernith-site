@@ -186,7 +186,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               text: 'بله، برای پروژه‌های معماری سیستم، فین‌تک، فروشگاهی و سامانه‌های مقیاس‌پذیر قابل همکاری است.'
             }
           },
-          // ➕ Added SEO-friendly questions
           {
             '@type': 'Question',
             name: 'چه تکنولوژی‌هایی در سمت بک‌اند استفاده می‌کند؟',
