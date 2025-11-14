@@ -1,9 +1,10 @@
 FROM node:20-alpine
 WORKDIR /app
 
-COPY package*.json ./
+# Copy build already created
 COPY .next/ ./.next/
 COPY public/ ./public/
+COPY package.json ./
 
 ENV NODE_ENV=production
 ENV PORT=8080
