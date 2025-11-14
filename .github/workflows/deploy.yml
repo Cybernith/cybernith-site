@@ -17,15 +17,26 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build Docker image locally
-        run: |
-          docker build -t my-next-app .
+        run: docker build -t my-next-app .
 
-      - name: Deploy image to Dokku
+      - name: Save Docker image as tar
+        run: docker save my-next-app -o my-next-app.tar
+
+      - name: Copy Docker image to server
+        uses: appleboy/scp-action@v0.1.1
+        with:
+          host: ${{ secrets.SSH_IP_ADDRESS }}
+          username: dokku
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "my-next-app.tar"
+          target: "/tmp/my-next-app.tar"
+
+      - name: Load and deploy on Dokku
         uses: appleboy/ssh-action@v0.1.9
         with:
           host: ${{ secrets.SSH_IP_ADDRESS }}
           username: dokku
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker load -i <(docker save my-next-app)
+            docker load -i /tmp/my-next-app.tar
             dokku tags:deploy ${{ secrets.DOKKU_PROJECT }} latest
