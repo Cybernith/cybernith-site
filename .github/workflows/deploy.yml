@@ -1,4 +1,4 @@
-name: Deploy Next.js Build to Dokku via Docker
+name: Deploy Next.js Docker Image to Dokku
 
 on:
   push:
@@ -11,32 +11,33 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-      - name: Build Docker image locally
-        run: docker build -t my-next-app .
+      - name: Build Docker image for Dokku
+        env:
+          APP_NAME: ${{ secrets.DOKKU_PROJECT }}
+        run: |
+          docker build --platform=linux/amd64 -t dokku/${APP_NAME}:${GITHUB_SHA} .
 
-      - name: Save Docker image as tar
-        run: docker save my-next-app -o my-next-app.tar
-
-      - name: Copy Docker image to server
-        uses: appleboy/scp-action@v0.1.1
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.9.0
         with:
-          host: ${{ secrets.SSH_IP_ADDRESS }}
-          username: dokku
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "my-next-app.tar"
-          target: "/tmp/my-next-app.tar"
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Load and deploy on Dokku
-        uses: appleboy/ssh-action@v0.1.9
-        with:
-          host: ${{ secrets.SSH_IP_ADDRESS }}
-          username: dokku
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            docker load -i /tmp/my-next-app.tar
-            dokku tags:deploy ${{ secrets.DOKKU_PROJECT }} latest
+      - name: Disable host key checking
+        run: |
+          mkdir -p ~/.ssh
+          echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+
+      - name: Push image to Dokku via ssh and deploy
+        env:
+          APP_NAME: ${{ secrets.DOKKU_PROJECT }}
+          DOKKU_HOST: ${{ secrets.SSH_IP_ADDRESS }}
+        run: |
+          TAG=${GITHUB_SHA}
+          docker save dokku/${APP_NAME}:${TAG} | \
+            ssh dokku@${DOKKU_HOST} \
+            "docker load | dokku tags:deploy ${APP_NAME} ${TAG}"
