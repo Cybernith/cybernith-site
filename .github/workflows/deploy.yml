@@ -1,4 +1,4 @@
-name: Push Next.js build to Dokku
+name: Deploy Next.js Build to Dokku
 
 on:
   push:
@@ -8,20 +8,12 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
 
-      - name: Prepare deploy folder
-        run: |
-          mkdir -p deploy
-          cp -r .next public package.json deploy/
-          cd deploy
-          git init
-          git config user.email "devolopersoroosh@gmail.com"
-          git config user.name "soroosh morshedi"
-          git add .
-          git commit -m "Deploy prebuilt build to Dokku"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.3
@@ -33,8 +25,11 @@ jobs:
           mkdir -p ~/.ssh
           echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
 
-      - name: Push to Dokku
+      - name: Push built files to Dokku
         run: |
           cd deploy
+          git init
+          git add .
+          git commit -m "Deploy build to Dokku"
           git remote add dokku dokku@${{ secrets.SSH_IP_ADDRESS }}:${{ secrets.DOKKU_PROJECT }} || true
           git push dokku HEAD:main -f
